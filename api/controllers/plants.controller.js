@@ -1,0 +1,43 @@
+const createError = require("http-errors");
+const Plant = require("../models/plant.model");
+
+module.exports.list = (req, res, next) => {
+  const criterial = { search, petFriendly, environment } = req.query;
+  
+  if (search) {
+    criterial.name = new RegExp(search, "i"); //regexp coge cadena de caracteres y los busca en el String, 'i' ignora mayus
+  }
+
+  if (petFriendly) {
+    criterial.petFriendly = true;
+  }
+
+  Plant.find()
+    .then((plants) => res.json(plants))
+    .catch((error) => next(error));
+};
+
+module.exports.detail = (req, res, next) => {
+  res.json(req.plant);
+};
+
+module.exports.delete = (req, res, next) => {
+  Plant.deleteOne({ _id: req.plant.id })
+    .then(() => res.status(204).send())
+    .catch((error) => next(error));
+};
+
+module.exports.create = (req, res, next) => {
+  Plant.create(req.body)
+    .then((plant) => res.status(201).json(plant))
+    .catch((error) => next(error));
+};
+
+module.exports.edit = (req, res, next) => {
+  const data = { name, price, description, petFriendly, environment, picture } = req.body;
+  const plant = req.plant;
+  Object.assign(plant, data);
+  plant.save()
+    .then((plant) => res.json(plant))
+    .catch((error) => next(error));
+};
