@@ -14,7 +14,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: "email is required",
-      unique: true,
+      unique: [true, "email already registered"],
       match: [EMAIL_PATTERN, "email is not valid"],
       lowercase: true,
     },

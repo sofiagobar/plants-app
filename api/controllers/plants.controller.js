@@ -28,8 +28,18 @@ module.exports.delete = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
-  Plant.create(req.body)
-    .then((plant) => res.status(201).json(plant))
+  Plant.findOne({ name: req.body.name })
+    .then(plant => {
+      if (plant) {
+        next(createError(400, { errors: { name: 'This plant already exists' } }));
+      } else {
+        return Plant.create({
+          ...req.body,
+          picture: req?.file?.path
+        })
+        .then((plant) => {res.status(201).json(plant)})
+      }
+    })
     .catch((error) => next(error));
 };
 
