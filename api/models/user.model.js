@@ -27,9 +27,17 @@ const userSchema = new Schema(
       type: String,
     },
     order: {
-      type: [String],
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Order",
+    },
+    social:{
+      google: {
+          type: String,
+      },
+    },
+    isAdmin:{
+      type: Boolean,
+      default: false,
     },
     address: String,
     city: String,

@@ -11,6 +11,9 @@ const app = express();
 
 /** Middlewares */
 app.use(logger('dev'));
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 
 /** Routes */
