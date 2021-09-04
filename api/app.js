@@ -48,7 +48,7 @@ app.use((error, req, res, next) => {
     if (error.errors) { //errores mongoose
       data.errors = Object.keys(error.errors)
         .reduce((errors, key) => {      //clave-valor cada error
-          errors[key] = error.errors[key].message;
+          errors[key] = error.errors[key].message; //los errores estarán en el message del error
           return errors;
         }, {});
     }

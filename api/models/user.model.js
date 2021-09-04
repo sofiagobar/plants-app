@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Order = require('../models/order.model');
+const bcrypt = require('bcrypt');
 
 const EMAIL_PATTERN =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -27,8 +29,10 @@ const userSchema = new Schema(
       type: String,
     },
     order: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Order",
+      type: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order"
+      }]
     },
     social:{
       google: {
@@ -52,8 +56,23 @@ const userSchema = new Schema(
           return ret;
         } 
     }    
-   }
+  }
 );
+
+userSchema.pre('save', function (next) {
+  if (this.isModified('password')) {
+      bcrypt.hash(this.password, 10).then((hash) => {
+      this.password = hash;
+      next();
+      });
+  } else {
+      next();
+  }
+});
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+return bcrypt.compare(passwordToCheck, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

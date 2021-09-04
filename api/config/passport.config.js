@@ -14,11 +14,15 @@ passport.deserializeUser((id, next) => {
     .catch(next);
 });
 
-passport.use('google-auth', new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID || 'xxx',
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'xxx',
-    callbackURL: '/api/authenticate/google/cb',
-  }, (accessToken, refreshToken, profile, next) => {
+passport.use(
+  'google-auth', 
+  new GoogleStrategy(
+    {
+    clientID: process.env.G_CLIENT_ID,
+    clientSecret: process.env.G_CLIENT_SECRET,
+    callbackURL: process.env.G_REDIRECT_URI || '/api/authenticate/google/cb',
+    }, 
+    (accessToken, refreshToken, profile, next) => {
     // No necesitamos guardar el token de acceso de google xq no necesitamos pedir a google ninguna información adicional
     // de los servicios del usuario que tenga en google.
     const googleId = profile.id;
@@ -63,17 +67,27 @@ passport.use(
       passwordField: "password",
     },
     (email, password, next) => {
+      
       User.findOne({ email })
         .then((user) => {
           if (!user) {
-            next(null, null, { email: "Invalid email or password" });
+            console.log('éntro')
+            next(null, null, {
+              email:{
+                message: "Invalid email or password"
+              }
+            });
           } else {
             return user.checkPassword(password)
             .then(match => {
               if (match) {
                 next(null, user);
               } else {
-                next(null, null, { email: "Invalid email or password" });
+                next(null, null, { 
+                  email: {
+                    message: "Invalid email or password"
+                }
+              });
               }
             })
           }

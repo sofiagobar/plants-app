@@ -1,28 +1,28 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const User = require('../models/user.model');
-const Plant = require('../models/plant.model')
+const Plant = require('../models/plant.model');
 
 const orderSchema = new Schema(
   {
-    user: {
+    buyer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
     products: [
       {
-        name: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Plant",
-        },
-        quantity: {
-          type: Number,
-        },
-        price: {
-          type: Number,
-        },
+        id: String,
+        name: String,
+        quantity: Number,
+        price: Number
       }
     ],
+    /*
+    isConfirmed: {
+      type: Boolean, 
+      default: true
+    },
+    */
   },
   { timestamps: true,
     toJSON: {

@@ -3,7 +3,7 @@ const passport = require("passport");
 const User = require("../models/user.model");
 
 module.exports.create = (req, res, next) => {
-  const data = ({ name, email, password, picture, address, city } = req.body);
+  const data = { name, email, password, picture, address, city } = req.body;
 
   User.create({
       ...req.body,
@@ -15,6 +15,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   passport.authenticate("local-auth", (error, user, validations) => {
+    console.log('validations', validations)
     if (error) {
       next(error);
     } else if (!user) {
@@ -38,20 +39,20 @@ module.exports.detail = (req, res, next) => {
     return res.json(req.user);
   }
 
-  User.findById(req.params.id)
-    .then((user) => res.status(200).json(user))
+  User.findById(req.user)
+    .then(user => res.status(200).json(user))
     .catch((error) => next(error));
 };
 
 module.exports.update = (req, res, next) => {
-  const data = ({ name, email, password, picture, address, city } = req.body);
+
+  const data = { name, email, password, picture, address, city } = req.body;
 
   Object.assign(req.user, data);
 
-  req.user
-    .save()
+  req.user.save()
     .then((user) => res.json(user))
-    .catch(next);
+    .catch(next)
 };
 
 module.exports.loginWithGoogle = (req, res, next) => {
@@ -71,6 +72,10 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
     (error, user, validations) => {
       if (error) {
         next(error);
+      } else if (!user) {
+        res
+          .status(400)
+          .json({ errors: validations });
       } else {
         req.login(user, (error) => {
           if (error) next(error);
@@ -79,10 +84,19 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
       }
     }
   );
-/*else if (!user) {
-        res
-          .status(400)
-          .render("users/login", { user: req.body, errors: validations }); //sería un res.redirect('/login')??
-      }*/
+
   passportController(req, res, next);
 };
+
+
+module.exports.list = (req, res, next) => {
+  User.find()
+    .then((plants) => res.json(plants))
+    .catch((error) => next(error));
+};
+
+/*module.exports.delete = (req, res, next) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(user => res.status(204).end())
+    .catch(next)
+};*/
