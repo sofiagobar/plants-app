@@ -1,3 +1,43 @@
 [
-    {}
+  {
+    "name": "Monstera Deliciosa",
+    "picture": "https://i.pinimg.com/originals/8b/84/a6/8b84a6fd4eac8f9862ac73c8e5aa7c05.jpg"
+  },
+  {
+    "name": "Ficus Tree",
+    "picture": "https://i.pinimg.com/564x/60/99/26/609926685e9cbb4a805c54b939d5ba84.jpg"
+  },
+  {
+    "name": "Senecio Rowleyanus",
+    "picture": "https://i.pinimg.com/564x/84/5e/3f/845e3f21ff454ba88c8a8ae0fe9adcd0.jpg"
+  },
+  {
+    "name": "Pothos",
+    "picture": "https://i.pinimg.com/564x/64/66/bc/6466bc02efad264f086b1a219e4682f4.jpg"
+  },
+  {
+    "name": "Bird of Paradise",
+    "picture": "https://i.pinimg.com/564x/0f/ca/a7/0fcaa7292e24f83a4bc809a6312d570c.jpg"
+  },
+  {
+    "name": "Bird's Nest Fern",
+    "picture": "https://i.pinimg.com/564x/67/17/4d/67174d824d8fce18e794fe24d64e6d61.jpg"
+  },
+  {
+    "name": "Peperomia Ginny",
+    "picture": "https://i.pinimg.com/564x/3d/e7/ed/3de7ed2aa74124052bc00da2f785816f.jpg"
+  },
+  {
+    "name": "Pilea Peperomioides",
+    "picture": "https://i.pinimg.com/564x/95/8f/f4/958ff40e52575dc9675fb177fe78d72f.jpg"
+  },
+  {
+    "name": "Snake Plant",
+    "picture": "https://i.pinimg.com/564x/41/1f/a4/411fa4999968d244c8cd5758d6a28799.jpg"
+  },
+  {
+    "name": "Philodendron Birkin",
+    "picture": "https://i.pinimg.com/564x/e4/ae/7b/e4ae7b6b5a007eb53c661459329d6e3a.jpg"
+  }
 ]
+

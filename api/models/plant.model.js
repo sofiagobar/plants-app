@@ -20,10 +20,17 @@ const plantSchema = new Schema(
     },
     petFriendly: {
       type: Boolean,
+      default: false,
     },
     picture: {
       type: [String],
     },
+    light: {
+      type: String,
+    },
+    water: {
+      type: String,
+    }
   },
   {
     timestamps: true,

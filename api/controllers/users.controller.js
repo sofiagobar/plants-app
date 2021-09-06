@@ -91,7 +91,7 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   User.find()
-    .then((plants) => res.json(plants))
+    .then((users) => res.json(users))
     .catch((error) => next(error));
 };
 

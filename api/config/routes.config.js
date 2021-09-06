@@ -28,6 +28,6 @@ router.post('/orders', secure.isAuthenticated, orders.create);
 router.get('/orders', secure.isAuthenticated, orders.listMyOrders) //usuario ve sus propias orders
 router.get('/orders/:id', secure.isAuthenticated, orders.detail)
 router.put('/orders/:id', secure.isAuthenticated, orders.edit)
-router.get('/orders/all', secure.isAuthenticated, secure.isAdmin, orders.list) //listar todas orders de todos los usuarios
-
+router.get('/allorders', secure.isAuthenticated, secure.isAdmin, orders.list) //listar todas orders de todos los usuarios
+//no se pueden delete las orders
 module.exports = router;
