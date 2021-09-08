@@ -1,6 +1,7 @@
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/users/login/Login";
+import Register from "./components/users/register/Register";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       
         <Switch>
           <Route exact path="/login" component={Login} />
-          
+          <Route exact path="/register" component={Register} />
           <Redirect to="/"/>
         </Switch>
     

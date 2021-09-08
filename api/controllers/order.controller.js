@@ -31,39 +31,19 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  Order.findById(req.params.id)
-    .then((order) => {
-      req.order = order;
-      if (order) {
-        if ((order.buyer == req.user.id)) {
-          res.json(order);
-        } else {
-          next(createError(403));
-        }
-      }
-    })
-    .catch(next);
+  if ((req.order.buyer == req.user.id)) {
+    res.json(req.order);
+  } else {
+    next(createError(403));
+  }
 };
 
 module.exports.edit = (req, res, next) => {
-  Order.findById(req.params.id)
-    .then((order) => {
-      if (order) {
-        req.order = order; //llevarmelo al controlador
-        next();
-      } else {
-        next(createError(404, "order not found"));
-      }
-    })
-    .catch((error) => next(error));
-
- /*const data = ({ products } = req.body);
-
-  console.log("data", data);
+  const data = ( [products.name, products.quantity] = req.body);
   const order = req.order;
+
   Object.assign(order, data);
-  order
-    .save()
+  order.save()
     .then((order) => res.json(order))
-    .catch((error) => next(error));*/
+    .catch((error) => next(error));
 };

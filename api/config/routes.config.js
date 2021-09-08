@@ -5,6 +5,7 @@ const plant = require('../middlewares/plant.mid');
 const secure = require('../middlewares/secure.mid');
 const upload = require('../config/multer.config');
 const orders = require('../controllers/order.controller');
+const order = require('../middlewares/order.mid')
 const router = express.Router();
 
 router.get('/plants', plants.list); 
@@ -14,7 +15,7 @@ router.delete('/plants/:id', secure.isAdmin, plant.exists, plants.delete);
 router.put('/plants/:id', secure.isAdmin, plant.exists, plants.edit);
 
 router.get('/users', secure.isAdmin, secure.isAuthenticated, users.list); ///
-router.post('/users', upload.single('picture'), secure.isNotAuthenticated, users.create);
+router.post('/register', upload.single('picture'), secure.isNotAuthenticated, users.create);
 router.post('/login', users.login);
 router.post('/logout', secure.isAuthenticated, users.logout);
 
@@ -26,8 +27,8 @@ router.put('/profile', secure.isAuthenticated, upload.single('picture'), users.u
 
 router.post('/orders', secure.isAuthenticated, orders.create);
 router.get('/orders', secure.isAuthenticated, orders.listMyOrders) //usuario ve sus propias orders
-router.get('/orders/:id', secure.isAuthenticated, orders.detail)
-router.put('/orders/:id', secure.isAuthenticated, orders.edit)
+router.get('/orders/:id', secure.isAuthenticated, order.exists, orders.detail)
+router.put('/orders/:id', secure.isAuthenticated, order.exists, orders.edit)
 router.get('/allorders', secure.isAuthenticated, secure.isAdmin, orders.list) //listar todas orders de todos los usuarios
 //no se pueden delete las orders
 module.exports = router;

@@ -5,11 +5,21 @@ const login = (email, password) => http.post('/login', { email, password })
 const logout = () => http.post('/logout')
 
 const getProfile = () => http.get('/profile')
-//const getUser = (id) => http.get('`/users/${id}`')
+
+const register = (user) => {
+    const data = new FormData()
+
+    data.append('name', user.name)
+    data.append('name', user.surname)
+    data.append('email', user.email)
+    data.append('password', user.password)
+    
+    return http.post('/register', data)}
 
 const service = {
     login,
     logout,
-    getProfile
+    getProfile,
+    register
 };
 export default service;

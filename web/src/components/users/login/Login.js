@@ -6,15 +6,22 @@ import service from "../../../services/users-service";
 
 const EMAIL_PATTERN = /\S+@\S+\.\S+/;
 
-/*const validations = {
+const validations = {
    email: (value) => {
-     let message
+     let message;
     if (value && !EMAIL_PATTERN.test(value)) {
-      message = 'Email or password is not correct'
+      message = 'Email or password is not correct';
     }
-     return messsage
-   }
-}*/
+     return message;
+   },
+   password: (value) => {
+    let message;
+    if (!value) {
+      message = 'Password is required';
+    }
+    return message;
+  },
+}
 
 function Login() {
   const history = useHistory()
@@ -25,11 +32,25 @@ function Login() {
     password: "",
   });
 
-  const [error, setError] = useState({
-    error: {
-      //email: validations.email('')
+  const [error, setError] = useState();
+
+  /*const [touched, setTouched] = useState({
+    touched: {
+      email: false,
+      password: false
     }
-  })
+  });
+
+
+  function handleBlur(event) {
+    const inputName = event.target.name;
+    setTouched({
+      touched: {
+        ...touched,
+        [inputName]: true
+      }
+    });
+  }
 
   function handleChange(event) {
     const inputName = event.target.name;
@@ -38,24 +59,45 @@ function Login() {
           ...data,
           [inputName]: value
       })
-      /*setError({
+      setError({
         ...error,
-        [inputName]:
+        [inputName]: validations[inputName] ? validations[inputName](value) : undefined,
       })
-      */
-  }
+  }*/
 
   function handleSubmit(event) {
     event.preventDefault() 
 
-    service.login(data.email, data.password)
+    service.login({
+      email: event.target.email.value,
+      password: event.target.password.value,
+    })
       .then((user) => {
         auth.login(user)
         history.push("/")
       })
       .catch(() => {
-        setError('Incorrect email or password')
+        setError(error.response.data.errors)
       })
+      /*.catch(error => {
+        const { errors, message } = error.response?.data || error;
+        const touched = Object.keys(errors || {}).reduce((touched, key) => {
+          touched[key] = true;
+          return touched;
+        }, {});
+        setErrors({
+          errors: {
+            name: errors ? undefined : message,
+            ...errors,
+          }
+        });
+        setTouched({
+          touched: {
+            name: errors ? false : true,
+            ...touched
+          }
+        })
+      })*/
   }
 
   return (
@@ -66,13 +108,16 @@ function Login() {
             <form onSubmit={handleSubmit}>
               <div className="form-group mx-sm-3">
                 <label>Email</label> 
-                <input name="email" type="text" onChange={handleChange} value={data.email} placeholder="Email" className="form-control col-md-2"/>
-                <div class="invalid-feedback"></div>
+                <input name="email" type="text" value={data.email} placeholder="example@example.org" 
+                className={`form-control ${error ? 'is-invalid' : ''}`} />
+                {error?.email && <div className="invalid-feedback">{error?.email}</div>}
               </div>
 
               <div className="form-group mx-sm-3">
                 <label>Password</label> 
-                <input name="password" type="password" onChange={handleChange} value={data.password} className="form-control col-md-2" placeholder="Password"/>
+                <input name="password" type="password" value={data.password} className="form-control col-md-2" 
+                placeholder="Password" />
+                {error?.password && <div className="invalid-feedback">{error?.password}</div>}
               </div>
 
               <button className="btn btn-primary btn-lg rounded-pill mt-3" type="submit">Log in</button>
