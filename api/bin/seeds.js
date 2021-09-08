@@ -14,7 +14,7 @@ mongoose.connection.once('open', () => {
             const data = plants.map((plant) => {
                 return {
                     ...plant,
-                    price: (Math.random() * 30).toFixed(2),
+                    price: (Math.random() * 30).toFixed(2), //num aleatorio + num aleatorio constr string metido en Number.parsefloat
                     description: faker.lorem.paragraph(),
                     environment: environment[Math.floor(Math.random() * environment.length)],
                     petFriendly: Math.random() > 0.5,

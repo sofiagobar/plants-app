@@ -8,6 +8,7 @@ function App() {
       
         <Switch>
           <Route exact path="/login" component={Login} />
+          
           <Redirect to="/"/>
         </Switch>
     
@@ -16,3 +17,5 @@ function App() {
 }
 
 export default App;
+
+//<Route exact path="/users" component={Register} />

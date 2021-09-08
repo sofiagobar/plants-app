@@ -15,14 +15,14 @@ router.put('/plants/:id', secure.isAdmin, plant.exists, plants.edit);
 
 router.get('/users', secure.isAdmin, secure.isAuthenticated, users.list); ///
 router.post('/users', upload.single('picture'), secure.isNotAuthenticated, users.create);
-router.post('/login', secure.isNotAuthenticated, users.login);
+router.post('/login', users.login);
 router.post('/logout', secure.isAuthenticated, users.logout);
 
 router.get('/authenticate/google', users.loginWithGoogle);
 router.get('/authenticate/google/cb', users.doLoginWithGoogle);
 
 router.get('/profile', secure.isAuthenticated, users.detail); //user sólo puede ver su profile!!
-router.put('/profile', upload.single('picture'), secure.isAuthenticated, users.update); //user actualizar su perfil --sólo puede actualizar el suyo!!
+router.put('/profile', secure.isAuthenticated, upload.single('picture'), users.update); //user actualizar su perfil --sólo puede actualizar el suyo!!
 
 router.post('/orders', secure.isAuthenticated, orders.create);
 router.get('/orders', secure.isAuthenticated, orders.listMyOrders) //usuario ve sus propias orders

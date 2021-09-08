@@ -48,6 +48,9 @@ module.exports.update = (req, res, next) => {
 
   const data = { name, email, password, picture, address, city } = req.body;
 
+  if (req.file) {
+    data.picture = req.file.path
+  }
   Object.assign(req.user, data);
 
   req.user.save()
