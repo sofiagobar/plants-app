@@ -13,17 +13,20 @@ const userSchema = new Schema(
       type: String,
       required: "Name is required",
     },
+    surname: {
+      type: String
+    },
     email: {
       type: String,
-      required: "email is required",
-      unique: [true, "email already registered"],
-      match: [EMAIL_PATTERN, "email is not valid"],
+      required: "Email is required",
+      unique: [true, "Email already registered"],
+      match: [EMAIL_PATTERN, "Email is not valid"],
       lowercase: true,
     },
     password: {
       type: String,
-      required: "A valid password is required",
-      match: [PASSWORD_PATTERN, "the password is invalid"],
+      required: "Password is required",
+      match: [PASSWORD_PATTERN, "Password is invalid"],
     },
     picture: {
       type: String,

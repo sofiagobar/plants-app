@@ -1,4 +1,3 @@
-import { nextTick } from 'process'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import service from '../services/users-service'
@@ -18,16 +17,22 @@ export function AuthContextProvider({ children }) {
             service.getProfile()
                 .then((user) =>setUser(user))
         } 
-    }, [])
+    }, [history])
 
     function login(user) {
         localStorage.setItem('user', user.id)
         setUser(user)
     }
 
+    function logout() {
+        localStorage.removeItem('user');
+        setUser(null)
+      }
+
     const value = {
         user,
-        login
+        login, 
+        logout
     }
 
     return (

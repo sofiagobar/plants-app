@@ -2,13 +2,10 @@
   background-position: 0 0;
   background-size: cover;
   background-repeat: no-repeat;
-  max-height: 750px;
-  position: relative;
   display: flex;
   align-items: center;
   z-index: -1;
   height: 100vh;
-  position: absolute;
   width: 100vw;
   top: 0;
 }
