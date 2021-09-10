@@ -5,6 +5,7 @@ import Register from "./components/users/register/Register";
 import Navbar from "./components/misc/navbar/Navbar";
 import PlantList from "./components/plants/plant-list/PlantList";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import PlantDetails from "./components/plants/plant-detail/PlantDetails";
 
 function App() {
   const location = useLocation()
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/" component={PlantList} />
+        <Route exact path="/plants/:id" component={PlantDetails} />
         <Redirect to="/"/>
       </Switch>
       

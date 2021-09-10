@@ -2,8 +2,11 @@ import http from './base-api-service';
 
 const list = () => http.get('/plants')
 
-const service = {
-    list
+const detail = (id) => http.get(`/plants/${id}`)
+
+const plantsService = {
+    list,
+    detail
 }
 
-export default service;
+export default plantsService;
