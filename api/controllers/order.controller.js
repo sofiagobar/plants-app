@@ -37,13 +37,3 @@ module.exports.detail = (req, res, next) => {
     next(createError(403));
   }
 };
-
-module.exports.edit = (req, res, next) => {
-  const data = ( [products.name, products.quantity] = req.body);
-  const order = req.order;
-
-  Object.assign(order, data);
-  order.save()
-    .then((order) => res.json(order))
-    .catch((error) => next(error));
-};

@@ -34,7 +34,7 @@ function Login() {
         history.push("/")
       })
       .catch(() => {
-        setError("Incorrect Email or password")
+        setError("Incorrect email or password")
       })
   }
 

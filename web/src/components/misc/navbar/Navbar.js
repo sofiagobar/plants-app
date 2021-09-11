@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { AuthContext } from "../../../contexts/AuthContext";
 import service from '../../../services/users-service';
@@ -20,9 +21,9 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
             
-                {auth.user && <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i className="fa fa-user fa-2x"></i>
-                </button>}
+                </button>
 
                 <a className="navbar-brand" href="#">Planty</a>
 
@@ -33,7 +34,8 @@ function Navbar() {
                     </button>
                 </form>
 
-                {auth.user && <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+                {auth.user ? 
+                (<div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         {auth.user?.name && <li className="nav-item">
                             <span className="nav-link me-3">Hi {auth.user?.name}!</span>
@@ -49,7 +51,7 @@ function Navbar() {
                         </li>
                     </ul>
                     
-                </div>}
+                </div>) : <Link to="/login"/>}
             </div>
         </nav>
     )

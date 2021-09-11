@@ -14,10 +14,10 @@ function App() {
     <>
     {location.pathname !== '/login' && <Navbar/>}
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
         <Route exact path="/" component={PlantList} />
         <Route exact path="/plants/:id" component={PlantDetails} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Redirect to="/"/>
       </Switch>
       

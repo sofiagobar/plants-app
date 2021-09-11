@@ -1,6 +1,6 @@
 import http from './base-api-service';
 
-const list = () => http.get('/plants')
+const list = (search, petFriendly) => http.get(`/plants?search=${search}&petFriendly=${petFriendly}`)
 
 const detail = (id) => http.get(`/plants/${id}`)
 

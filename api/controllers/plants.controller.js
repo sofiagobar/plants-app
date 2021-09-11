@@ -2,7 +2,7 @@ const createError = require("http-errors");
 const Plant = require("../models/plant.model");
 
 module.exports.list = (req, res, next) => {
-  const criterial = { search, petFriendly, environment } = req.query;
+  const criterial = { search, petFriendly } = req.query;
   
   if (search) {
     criterial.name = new RegExp(search, "i"); //regexp coge cadena de caracteres y los busca en el String, 'i' ignora mayus
@@ -12,7 +12,7 @@ module.exports.list = (req, res, next) => {
     criterial.petFriendly = true;
   }
 
-  Plant.find()
+  Plant.find(criterial)
     .then((plants) => res.json(plants))
     .catch((error) => next(error));
 };

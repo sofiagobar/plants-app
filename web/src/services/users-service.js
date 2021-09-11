@@ -2,6 +2,8 @@ import http from './base-api-service';
 
 const login = (email, password) => http.post('/login', { email, password })
 
+//const loginWithGoogle = (email, password) => http.get('/authenticate/google', { email, password })
+
 const logout = () => http.post('/logout')
 
 const getProfile = () => http.get('/profile')
