@@ -1,0 +1,51 @@
+#cart {
+  &:hover {
+    color: grey;
+  }
+}
+
+#plant-img {
+  max-width: 65px;
+  max-height: 75px;
+  padding-right: 5px;
+}
+
+li {
+  display: inline;
+  padding-left: 20px;
+  text-decoration: none;
+}
+
+.shopping-cart {
+  margin: 20px 0;
+  float: right;
+  background: white;
+  width: 350px;
+  position: relative;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.shopping-cart-bottom {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 15px;
+}
+
+.shopping-cart-items {
+  padding-top: 20px;
+}
+
+.clearfix {
+  margin-bottom: 18px;
+}
+
+img {
+  float: left;
+  margin-right: 12px;
+}
+
+.item-name {
+  display: block;
+  padding-top: 10px;
+  font-size: 16px;
+}
