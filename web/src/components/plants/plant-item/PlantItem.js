@@ -1,9 +1,10 @@
 import "./PlantItem.css";
 import { useContext } from "react";
 import { CartContext } from "../../../contexts/CartContext";
+import { Link } from "react-router-dom";
 
-function PlantItem({ id, name, picture, price }) {
-  const { cart, createProduct } = useContext(CartContext);
+function PlantItem({ id, name, picture, price, ...plant }) {
+  const { createProduct } = useContext(CartContext);
 
   const handleCreateProduct = () => {
     createProduct({
@@ -16,15 +17,15 @@ function PlantItem({ id, name, picture, price }) {
   };
 
   return (
-    <div className="col-6 mb-3">
-      <div className="card">
-        <img className="card-img-top" src={picture} alt={name} />
+    <div className="col-6 mb-3 ">
+      <div className="card small-shadow">
+        <Link to={`/plants/${id}`} {...plant} > <img className="card-img-top img-fluid" src={picture} alt={name}/> </Link>
         <div className="card-body">
           <h5 className="card-title text-center">{name}</h5>
           <div className="d-flex justify-content-around">
             <p className="card-text p-2">{price}€</p>
-            <button onClick={handleCreateProduct} className="btn btn-success">
-              <i className="fa fa-shopping-cart fa-lg"></i>
+            <button onClick={handleCreateProduct} className="btn btn-outline-success">
+            <i className="fa fa-shopping-cart"></i>
             </button>
           </div>
         </div>
@@ -33,5 +34,5 @@ function PlantItem({ id, name, picture, price }) {
   );
 }
 //imagen y título lleva a detalle de la planta
-//carrito suma +1 al carrito navbar
+
 export default PlantItem;

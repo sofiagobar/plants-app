@@ -9,7 +9,7 @@ module.exports.list = (req, res, next) => {
   }
 
   if (petFriendly) {
-    criterial.petFriendly = true;
+    criterial.petFriendly = new RegExp(petFriendly, "i");
   }
 
   Plant.find(criterial)

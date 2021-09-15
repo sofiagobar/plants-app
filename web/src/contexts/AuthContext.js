@@ -17,7 +17,7 @@ export function AuthContextProvider({ children }) {
             service.getProfile()
                 .then((user) =>setUser(user))
         } 
-    }, [history])
+    }, [])
 
     function login(user) {
         localStorage.setItem('user', user.id)

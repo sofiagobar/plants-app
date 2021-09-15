@@ -17,7 +17,7 @@ mongoose.connection.once('open', () => {
                     price: (Math.random() * 30).toFixed(2), //num aleatorio + num aleatorio constr string metido en Number.parsefloat
                     description: faker.lorem.paragraph(),
                     environment: environment[Math.floor(Math.random() * environment.length)],
-                    petFriendly: Math.random() > 0.5,
+                    petFriendly: `petFriendly${Math.random() > 0.5}`,//petFriendlyOk petFriendlyNok
                     light: light[Math.floor(Math.random() * light.length)],
                     water: water[Math.floor(Math.random() * water.length)],
                 }

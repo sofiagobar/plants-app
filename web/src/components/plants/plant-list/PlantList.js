@@ -8,7 +8,7 @@ function PlantList() {
   const [plants, setPlants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [petFriendly, setPetFriendly] = useState(true && false);
+  const [petFriendly, setPetFriendly] = useState('petfriendly');
 
   useEffect(() => {
     plantsService
@@ -24,7 +24,7 @@ function PlantList() {
   }, [search, petFriendly]);
 
   function handleChange() {
-      if (petFriendly === true) {setPetFriendly(false)}
+    petFriendly ? setPetFriendly('true') : setPetFriendly('false')
   }
 
   function handleSearch(text) {

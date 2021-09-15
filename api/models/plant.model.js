@@ -19,8 +19,7 @@ const plantSchema = new Schema(
       type: String,
     },
     petFriendly: {
-      type: Boolean,
-      default: false,
+      type: String
     },
     picture: {
       type: [String],

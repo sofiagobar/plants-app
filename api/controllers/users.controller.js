@@ -82,7 +82,7 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
       } else {
         req.login(user, (error) => {
           if (error) next(error);
-          else res.redirect("http://localhost:3000");
+          else res.redirect(`${process.env.REACT_APP_URL}/google/cb`);
         });
       }
     }

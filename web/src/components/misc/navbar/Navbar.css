@@ -1,7 +1,13 @@
-#cart {
-  &:hover {
-    color: grey;
-  }
+.container {
+  width: 100%;
+  
+}
+
+.navbar-brand a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 26px;
+    color: rgb(4, 168, 113);
 }
 
 #plant-img {
@@ -17,13 +23,12 @@ li {
 }
 
 .shopping-cart {
-  margin: 20px 0;
+  margin: 20px;
   float: right;
   background: white;
-  width: 350px;
+  width: 100%;
   position: relative;
   border-radius: 3px;
-  padding: 20px;
 }
 
 .shopping-cart-bottom {
@@ -35,10 +40,6 @@ li {
   padding-top: 20px;
 }
 
-.clearfix {
-  margin-bottom: 18px;
-}
-
 img {
   float: left;
   margin-right: 12px;
@@ -48,4 +49,22 @@ img {
   display: block;
   padding-top: 10px;
   font-size: 16px;
+}
+
+.counter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-units{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #202020;
+  cursor: pointer;
 }
