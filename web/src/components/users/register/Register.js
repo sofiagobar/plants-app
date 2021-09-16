@@ -26,7 +26,7 @@ function Register() {
     return(
         <form onSubmit={handleSubmit}>
             <div className="container">
-                <div className="col-sm-12 justify-content-md-center align">
+                <div className="col-sm-6 d-flex align-items-center flex-column">
                     <div className="form-group row-sm">
                         <label>Name</label>
                         <input type="text" name="name" className={`form-control ${error?.name ? 'is-invalid' : ''}`} 
@@ -51,9 +51,9 @@ function Register() {
                          placeholder="Password"/>
                         {error?.password && <div className="invalid-feedback">{error?.password}</div>}
                     </div>
-                    <button className="btn btn-primary btn-lg rounded-pill mt-3" type="submit">Register</button>
+                    <button className="btn btn-primary btn-lg rounded-pill mt-3 " type="submit">Register</button>
                 </div>
-                <p className="mt-3">Already registered? <Link to="/login">Log in</Link></p>
+                <p className="text-center mt-3">Already registered? <Link to="/login">Log in</Link></p>
             </div>
         </form>
     )

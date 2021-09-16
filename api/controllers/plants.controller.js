@@ -2,15 +2,16 @@ const createError = require("http-errors");
 const Plant = require("../models/plant.model");
 
 module.exports.list = (req, res, next) => {
-  const criterial = { search, petFriendly } = req.query;
-  
+  const { search, petFriendly } = req.query;
+  const criterial = {}
+
   if (search) {
-    criterial.name = new RegExp(search, "i"); //regexp coge cadena de caracteres y los busca en el String, 'i' ignora mayus
+    criterial.name = new RegExp(search, "i");
   }
 
-  if (petFriendly) {
-    criterial.petFriendly = new RegExp(petFriendly, "i");
-  }
+  if (petFriendly === 'true')  {
+    criterial.petFriendly = true
+  } 
 
   Plant.find(criterial)
     .then((plants) => res.json(plants))

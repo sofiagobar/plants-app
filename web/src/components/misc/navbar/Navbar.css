@@ -23,11 +23,11 @@ li {
 }
 
 .shopping-cart {
-  margin: 20px;
+  
   float: right;
   background: white;
-  width: 100%;
-  position: relative;
+  width: 100vw;
+  
   border-radius: 3px;
 }
 
@@ -38,6 +38,8 @@ li {
 
 .shopping-cart-items {
   padding-top: 20px;
+  position: absolute;
+  width: 100vw;
 }
 
 img {
@@ -53,7 +55,7 @@ img {
 
 .counter{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -67,4 +69,8 @@ img {
   align-items: center;
   color: #202020;
   cursor: pointer;
+}
+
+.cart {
+  height: 50px;
 }

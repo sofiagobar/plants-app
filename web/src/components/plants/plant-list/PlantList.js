@@ -8,7 +8,7 @@ function PlantList() {
   const [plants, setPlants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [petFriendly, setPetFriendly] = useState('petfriendly');
+  const [petFriendly, setPetFriendly] = useState(false);
 
   useEffect(() => {
     plantsService
@@ -23,26 +23,30 @@ function PlantList() {
       });
   }, [search, petFriendly]);
 
-  function handleChange() {
-    petFriendly ? setPetFriendly('true') : setPetFriendly('false')
-  }
+  /*function handleChange() {
+    setPetFriendly(petFriendly)
+
+    onClick={handleChange}
+  }*/
 
   function handleSearch(text) {
     setSearch(text);
   }
-  console.log(plants);
+
+  console.log('plants', plants);
+  
   return (
     <div className="container ">
-      <div className="my-4">
+      <div className="my-2">
         <h1>Find your Soul Plant.</h1>
       </div>
       <div className="my-4">
         <SearchBar value={search} onSearch={handleSearch} />
       </div>
       <div className="btn-group-toggle my-4" data-toggle="buttons">
-        <button className="btn btn-secondary " onClick={handleChange}>
+        <button className="btn btn-secondary" onClick={() =>  setPetFriendly(!petFriendly)}>
           <i className="fa fa-paw fa-fg me-2"></i>
-          <p>Pet friendly</p>
+          <p className="pet-friendly">Pet friendly</p>
         </button>
       </div>
       <h3 className="my-4">Featured plants</h3>

@@ -11,15 +11,13 @@ function Navbar({ id, name, picture, price }) {
   const auth = useContext(AuthContext);
   const { cart, editProduct, deleteProduct } = useContext(CartContext);
 
-  const [quantity, setQuantity] = useState(1);
+  //const [setQuantity] = useState(1);
   const [showCart, setShowCart] = useState(false);
   const [showUser, setShowUser] = useState(false);
 
-  const handleChange = (event) => {
-    setQuantity(event.target.value)
-  }
-
-  
+  /*const handleChange = (event) => {
+    setQuantity(event.target.value);
+  };*/
 
   function handleLogout() {
     service.logout().then(() => {
@@ -30,7 +28,7 @@ function Navbar({ id, name, picture, price }) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+      <div className="container-fluid mt-2">
         <button
           className="navbar-toggler"
           type="button"
@@ -43,11 +41,11 @@ function Navbar({ id, name, picture, price }) {
         >
           <i className="fa fa-user fa-2x"></i>
         </button>
-        <a className="navbar-brand" href="#">
+        <h1 className="navbar-brand">
           <Link to="/"> Planty </Link>
-        </a>
+        </h1>
 
-        <div className="inline my-2 my-lg-0">
+        <div className="cart inline my-2 my-lg-0">
           <button
             onClick={() => setShowCart(!showCart)}
             className="btn"
@@ -64,58 +62,66 @@ function Navbar({ id, name, picture, price }) {
               {showCart && (
                 <div className="shopping-cart-items">
                   {cart.products.map((product) => (
-                    
-                      <div className="clearfix" key={product.id}>
-                        <img
-                          id="plant-img"
-                          src={product.picture}
-                          alt={product.name}
-                        />
-                        <span className="item-name me-2 d-flex justify-content-start">
-                          {product.name}
+                    <div className="clearfix" key={product.id}>
+                      <img
+                        id="plant-img"
+                        src={product.picture}
+                        alt={product.name}
+                      />
+                      <span className="item-name me-2 d-flex justify-content-start">
+                        {product.name}
+                      </span>
+                      <div className="d-flex justify-content-around">
+                        <span className="item-quantity me-2">
+                          <div className="counter">
+                            <button
+                              className="btn-units me-2"
+                              onClick={() => editProduct(product.id, "sub")}
+                              disabled={product.quantity === 1}
+                            >
+                              -
+                            </button>
+                            <span className="me-2">{product.quantity} </span>
+                            <button
+                              className="btn-units"
+                              onClick={() => editProduct(product.id, "add")}
+                            >
+                              +
+                            </button>
+                          </div>
                         </span>
-                        <div className="d-flex justify-content-around">
-                          <span className="item-quantity me-2">
-                            Units: {product.quantity}
-                            <div className="counter">
-                              <div
-                                className="btn-units"
-                                onClick={() => editProduct(product.id, 'sub')}
-                              >
-                                -
-                              </div>
-                              <span
-                          
-                              >{product.quantity} </span>
-                              <div
-                                className="btn-units"
-                                onClick={() => editProduct(product.id, 'add')}
-                              >
-                                +
-                              </div>
-                            </div>
-                          </span>
-                          <span className="item-price">{product.price}€</span>
-                          <button onClick={() => deleteProduct(product.id)}>
-                            <i className="fa fa-times"></i>
-                          </button>
-                        </div>
+                        <span className="item-price">{product.price}€</span>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => deleteProduct(product.id)}
+                        >
+                          <i className="fa fa-times"></i>
+                        </button>
                       </div>
-                    
-                  ))}
-                  <div className="shopping-cart-bottom">
-                    <div className="shopping-cart-total d-flex justify-content-around">
-                      <div className="mt-2">
-                        <span className="lighter-text">Total: </span>
-                        <span className="main-color-text">
-                          {cart.finalPrice.toFixed(2)}
-                        </span>
-                      </div>
-                      <a href="#" className="btn btn-info">
-                        Checkout
-                      </a>
                     </div>
-                  </div>
+                  ))}
+                  {cart.finalPrice >= 1 ? (
+                    <div className="shopping-cart-bottom">
+                      <div className="shopping-cart-total d-flex justify-content-around">
+                        <div className="mt-2">
+                          <span className="lighter-text">Total: </span>
+                          <span className="main-color-text">
+                            {cart.finalPrice.toFixed(2)}
+                          </span>
+                        </div>
+                        <Link to="/orders">
+                          <button
+                            className="btn btn-info"
+                            onClick={() => setShowCart(!showCart)}
+                          >
+                            Checkout
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <p>Nothing in your cart yet!</p>
+                  )}
                 </div>
               )}
             </div>

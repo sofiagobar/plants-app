@@ -30,17 +30,15 @@ function PlantDetails() {
             })*/
     }, [id])
 
-    /*const handleCreateProduct = () => {
+    const handleCreateProduct = () => {
         createProduct({
-            name,
-            price,
-            picture,
-            id,
+            name: plant.name,
+            price:plant.price,
+            picture: plant.picture,
+            id: plant.id,
             quantity: 1
         })
-        onClick={handleCreateProduct}
-    }*/
-
+    }
 
     return plant && (
         <div>
@@ -50,7 +48,7 @@ function PlantDetails() {
                 <h5 className="card-title">{plant.name}</h5>
                 <p className="card-text">{plant.price}€</p>
                 <p className="card-text">{plant.description}</p>
-                <button className="btn btn-info" >Add to Cart</button>
+                <button className="btn btn-info" onClick={handleCreateProduct} >Add to Cart</button>
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">{plant.light}</li>

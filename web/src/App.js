@@ -7,6 +7,7 @@ import PlantList from "./components/plants/plant-list/PlantList";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import PlantDetails from "./components/plants/plant-detail/PlantDetails";
 import GoogleCallback from "./components/users/googlecallback/GoogleCallback";
+import PayItem from "./components/orders/Payitem";
 
 function App() {
   const location = useLocation()
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/google/cb" component={GoogleCallback} />
+        <Route exact path="/orders" component={PayItem} />
         <Redirect to="/"/>
       </Switch>
     </>

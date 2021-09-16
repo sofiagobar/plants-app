@@ -7,10 +7,11 @@ import service from "../../../services/users-service";
 function GoogleCallback() {
     const history = useHistory();
     const auth = useContext(AuthContext);
-    
+    console.log('éntro en google callback')
     useEffect(() => {
-      service.getUser('me')
+      service.getProfile()
         .then(user => {
+          console.log(user)
           auth.login(user);
           history.push('/');
         })

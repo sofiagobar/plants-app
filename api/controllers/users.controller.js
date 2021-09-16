@@ -70,6 +70,7 @@ module.exports.loginWithGoogle = (req, res, next) => {
 };
 
 module.exports.doLoginWithGoogle = (req, res, next) => {
+  console.log('´varaible de entorno', process.env.REACT_APP_URL)
   const passportController = passport.authenticate(
     "google-auth",
     (error, user, validations) => {
@@ -82,7 +83,7 @@ module.exports.doLoginWithGoogle = (req, res, next) => {
       } else {
         req.login(user, (error) => {
           if (error) next(error);
-          else res.redirect(`${process.env.REACT_APP_URL}/google/cb`);
+          else res.redirect(`${process.env.REACT_APP_URL}google/cb`);
         });
       }
     }

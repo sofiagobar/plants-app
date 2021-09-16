@@ -20,19 +20,28 @@ export function CartContextProvider({children}) {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    const getTotalPrice = (products) => {
+    /*const getTotalPrice = (products) => {
         return products.reduce((price, product) => {
             return price + product.price * product.quantity
          }, 0)
-    }
+    }*/
 
     function createProduct(product) {
-        const cartUpdated = {
-            products: [...cart.products, product],
-            finalPrice: cart.finalPrice + ( product.price * product.quantity)
-        };
-        setCart(cartUpdated)
+        const isSelected = cart.products.some(e =>  e.id === product.id)
+
+        if (!isSelected) {
+            const cartUpdated = {
+                products: [...cart.products, product],
+                finalPrice: cart.finalPrice + ( product.price * product.quantity)
+            };
+            setCart(cartUpdated)
+        } else {
+            product.quantity += 1;
+            cart.finalPrice += product.price
+        }
     }
+
+    
 
     function editProduct(id, keyQuantity) {
 
@@ -80,6 +89,13 @@ export function CartContextProvider({children}) {
 
         setCart(cartUpdated)
     }
+    
+    const clearCart = () => {
+        setCart({
+            products: [],
+            finalPrice: 0
+        })
+    }
 
     const value = {
         cart,
@@ -94,3 +110,15 @@ export function CartContextProvider({children}) {
         </CartContext.Provider>
     )
 }
+
+/*const newProducts = cart.products.filter((elem, i) => {
+            if (elem.id === id) {
+                cartUpdated.products.quantity + elem.quantity;
+                cartUpdated.finalPrice = cartUpdated.finalPrice - elem.price * elem.quantity
+                return false
+            } else {
+                return true
+            }
+        });
+
+        cartUpdated.products = newProducts*/
