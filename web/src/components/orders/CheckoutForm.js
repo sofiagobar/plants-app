@@ -1,12 +1,18 @@
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
-import { useContext } from 'react';
-import { CartContext } from '../../contexts/CartContext';
+import './CheckoutForm.css'
+import { withRouter, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useContext, useState } from "react";
+import { CartContext } from "../../contexts/CartContext";
+import { AuthContext } from '../../contexts/AuthContext';
+import ordersService from '../../services/orders-service';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
-  const {cart} = useContext(CartContext)
   const elements = useElements();
+  const { cart, clearCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext)
+  const history = useHistory()
+  const [order, setOrder] = useState()
 
   const handleSubmit = async (event) => {
     // Block native form submission.
@@ -24,51 +30,99 @@ const CheckoutForm = () => {
     const cardElement = elements.getElement(CardElement);
 
     // Use your card Element with other Stripe.js APIs
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: 'card',
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
       card: cardElement,
     });
 
+    ordersService.createOrder(order, cart)
+      .then(order => {
+        setOrder(order)
+        clearCart()
+        history.push('/')
+      })
+
+
 
     if (error) {
-      console.log('[error]', error);
+      console.log("[error]", error);
     } else {
-      console.log('[este es tu]', cart);
+      console.log("[paymentMethod]", paymentMethod);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-        <div className="Checkout">
-            <h5 className="mt-2 mb-3">Pay with Card</h5>
-            <CardElement 
-                options={{
-                    style: {
-                    base: {
-                        fontSize: '16px',
-                        fontFamily: 'Roboto, sans-serif',
-                        fontSmoothing: "antialiased",
-                        color: '#424770',
-                        '::placeholder': {
-                        color: '#32325d',
-                        },
-                    },
-                    invalid: {
-                        color: '#9e2146',
-                    },
-                    },
-                }}
-            />
-            <button className="mt-4" type="submit" disabled={!stripe}>
-                Pay
-            </button>
+      <div className="Checkout container">
+        <div className="order mb-4">
+          <h2>Your Order</h2>
+          {cart.products.map((product) => (
+            <div className="item mt-4 mb-2">
+              <div className="row ">
+                <div className="col ">
+                  <img id="plant-img" src={product.picture} alt={product.name} />
+                </div>
+                <div className="col">
+                  <span className="name align-middle">{product.name}</span>
+                </div>
+                <div className="col">
+                  <span className="align-middle" >Units: {product.quantity} </span>
+                </div>
+                <div className="col">
+                  <span className="item-price">{product.price}€</span>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className="price align-items-end mt-4 ">
+            <span className="total lighter-text">Total: </span>
+            <span className="price main-color-text"> {cart.finalPrice.toFixed(2)}€</span>
+          </div>
         </div>
+
+        <div className="mt-2 mb-4">
+          <h5 >Your data</h5>
+          <ul className="list-group">
+            <li className="list-group-item">{user.name} {user.surname}</li>
+            <li className="list-group-item">{user.email} </li>
+            {user.address && <li className="list-group-item">{user.address} </li>}
+            {user.city && <li className="list-group-item">{user.city} </li>}
+          </ul>
+        </div>
+
+
+        <div className="mt-4">
+          <h5 className="mt-2 mb-4">Pay with Card</h5>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  fontFamily: "Roboto, sans-serif",
+                  fontSmoothing: "antialiased",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#32325d",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
+                },
+              },
+            }}
+          />
+          <div class="d-grid gap-2">
+            <button className="mt-4 btn btn-success" type="submit" disabled={!stripe}>
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
 
 export default withRouter(CheckoutForm);
-
 
 /*// Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.

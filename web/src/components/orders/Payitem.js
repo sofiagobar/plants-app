@@ -21,33 +21,3 @@ const PayItem = () => {
 };
 
 export default PayItem;
-
-/*{cart.products.map((product) => (
-    <div className="container">
-        <div className="row">
-            <div className="col">
-                <img
-                id="plant-img"
-                src={product.picture}
-                alt={product.name}
-                />               
-            </div>
-            <div className="col">
-                <span>{product.name}</span>
-            </div>
-            <div className="col">
-                <span>{product.quantity} </span>
-            </div>
-            <div className="col">
-                <span className="item-price">{product.price}€</span>
-            </div>
-        </div>
-    </div>
-))}
-    <div className="mt-2">
-        <span className="lighter-text">Total: </span>
-        <span className="main-color-text">
-            {cart.finalPrice.toFixed(2)}
-        </span>
-    </div>
-*/

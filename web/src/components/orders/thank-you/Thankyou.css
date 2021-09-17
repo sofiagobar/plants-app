@@ -1,0 +1,22 @@
+#img-thankyou {
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+}
+
+.heading {
+    color: white;
+    text-decoration: white;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.lead {
+    color: white;
+}

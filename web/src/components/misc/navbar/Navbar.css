@@ -23,23 +23,27 @@ li {
 }
 
 .shopping-cart {
-  
-  float: right;
+  left: 0;
   background: white;
   width: 100vw;
-  
+  position: absolute;
   border-radius: 3px;
+  top: 100;
+  
 }
 
 .shopping-cart-bottom {
   border-top: 1px solid #e8e8e8;
-  padding-top: 15px;
+  padding: 15px;
 }
 
 .shopping-cart-items {
-  padding-top: 20px;
+  padding: 10px;
   position: absolute;
   width: 100vw;
+  left: 0;
+  z-index: 1;
+  background-color: white;
 }
 
 img {

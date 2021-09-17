@@ -36,12 +36,9 @@ export function CartContextProvider({children}) {
             };
             setCart(cartUpdated)
         } else {
-            product.quantity += 1;
-            cart.finalPrice += product.price
+            
         }
     }
-
-    
 
     function editProduct(id, keyQuantity) {
 
@@ -55,9 +52,11 @@ export function CartContextProvider({children}) {
                 const productUpdated = {...elem};
                 if (keyQuantity === 'add') {
                     productUpdated.quantity += 1;
+                    //productUpdated.price += elem.price;
                     cartUpdated.finalPrice += productUpdated.price
                 } else {
                     productUpdated.quantity -= 1;
+                    //productUpdated.price -= elem.price * elem.quantity;
                     cartUpdated.finalPrice -= productUpdated.price
                 }
                 return productUpdated
@@ -91,6 +90,7 @@ export function CartContextProvider({children}) {
     }
     
     const clearCart = () => {
+        //localStorage.removeItem('cart');
         setCart({
             products: [],
             finalPrice: 0
@@ -101,7 +101,8 @@ export function CartContextProvider({children}) {
         cart,
         createProduct,
         editProduct,
-        deleteProduct
+        deleteProduct,
+        clearCart
     }
 
     return (

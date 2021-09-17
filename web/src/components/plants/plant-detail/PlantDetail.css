@@ -1,8 +1,20 @@
 .plant-img {
-     background-size: cover;
-     background-position: center;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-    
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 75vh;
+}
+
+#angle-icon {
+  position: absolute;
+  top: 100px;
+  left: 18px;
+  color: black;
+}
+.fa-tint {
+    color: #216974;
+}
+.card-title {
+    color: #2b4521;
 }

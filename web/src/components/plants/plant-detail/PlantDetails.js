@@ -43,16 +43,16 @@ function PlantDetails() {
     return plant && (
         <div>
             <div className="plant-img" style={{backgroundImage: `url(${plant.picture})`}}></div>
-            <Link to="/"> <i class="fa fa-angle-left"></i> </Link>
+            <Link to="/"> <i id="angle-icon" class="fa fa-angle-left fa-3x"></i> </Link>
             <div className="card-body text-centered">
-                <h5 className="card-title">{plant.name}</h5>
+                <h1 className="card-title">{plant.name}</h1>
                 <p className="card-text">{plant.price}€</p>
                 <p className="card-text">{plant.description}</p>
                 <button className="btn btn-info" onClick={handleCreateProduct} >Add to Cart</button>
             </div>
             <ul className="list-group list-group-flush">
-                <li className="list-group-item">{plant.light}</li>
-                <li className="list-group-item">{plant.water}</li>
+                <li className="list-group-item"> <i class="bi bi-sun"></i> {plant.light}</li>
+                <li className="list-group-item"> <i class="fa fa-tint fa-2x me-3"></i> {plant.water}</li>
             </ul>
         </div>
     )

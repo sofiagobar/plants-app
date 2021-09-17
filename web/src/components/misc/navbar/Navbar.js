@@ -62,7 +62,7 @@ function Navbar({ id, name, picture, price }) {
               {showCart && (
                 <div className="shopping-cart-items">
                   {cart.products.map((product) => (
-                    <div className="clearfix" key={product.id}>
+                    <div className="clearfix mb-3" key={product.id}>
                       <img
                         id="plant-img"
                         src={product.picture}
@@ -92,7 +92,7 @@ function Navbar({ id, name, picture, price }) {
                         </span>
                         <span className="item-price">{product.price}€</span>
                         <button
-                          className="btn btn-danger"
+                          className="btn btn-outline-danger"
                           onClick={() => deleteProduct(product.id)}
                         >
                           <i className="fa fa-times"></i>
@@ -111,7 +111,7 @@ function Navbar({ id, name, picture, price }) {
                         </div>
                         <Link to="/orders">
                           <button
-                            className="btn btn-info"
+                            className="btn btn-success"
                             onClick={() => setShowCart(!showCart)}
                           >
                             Checkout
