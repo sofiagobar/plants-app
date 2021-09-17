@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import service from '../services/users-service'
 
 export const AuthContext = React.createContext()

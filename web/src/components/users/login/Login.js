@@ -62,7 +62,7 @@ function Login() {
             </form>
             
 
-            <a className="btn btn-primary btn-lg rounded-pill mt-4" href="http://localhost:3001/api/authenticate/google"><i className="fa fa-google"></i> Log in with Google</a>
+            <a className="btn btn-primary btn-lg rounded-pill mt-4" href={`${process.env.REACT_APP_API_BASE_URL}/authenticate/google`}><i className="fa fa-google"></i> Log in with Google</a>
             
             <p className="mt-3">First time here? <Link to="/register">Register</Link></p>
           </div>

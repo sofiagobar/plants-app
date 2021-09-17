@@ -1,4 +1,5 @@
 const express = require('express');
+const createError = require('http-errors')
 const users = require('../controllers/users.controller');
 const plants = require('../controllers/plants.controller');
 const plant = require('../middlewares/plant.mid');
@@ -30,4 +31,7 @@ router.get('/orders', secure.isAuthenticated, orders.listMyOrders) //usuario ve 
 router.get('/orders/:id', secure.isAuthenticated, order.exists, orders.detail)
 router.get('/allorders', secure.isAuthenticated, secure.isAdmin, orders.list) //listar todas orders de todos los usuarios
 //no se pueden delete las orders
+
+router.use((req, res, next) => next(createError(404, 'Route not found')))
+
 module.exports = router;

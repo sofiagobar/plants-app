@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { AuthContext } from '../../contexts/AuthContext';
 import ordersService from '../../services/orders-service';
+import { Link } from 'react-router-dom';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -75,14 +76,14 @@ const CheckoutForm = () => {
             </div>
           ))}
           <div className="price align-items-end mt-4 ">
-            <span className="total lighter-text">Total: </span>
+            <span className="total lighter-tex me-2">Total: </span>
             <span className="price main-color-text"> {cart.finalPrice.toFixed(2)}€</span>
           </div>
         </div>
 
         <div className="mt-2 mb-4">
-          <h5 >Your data</h5>
-          <ul className="list-group">
+          <h5 >Your contact info</h5>
+          <ul className="list-group mt-2">
             <li className="list-group-item">{user.name} {user.surname}</li>
             <li className="list-group-item">{user.email} </li>
             {user.address && <li className="list-group-item">{user.address} </li>}
@@ -92,7 +93,7 @@ const CheckoutForm = () => {
 
 
         <div className="mt-4">
-          <h5 className="mt-2 mb-4">Pay with Card</h5>
+          <h5 className="mt-4 mb-4">Pay with Card</h5>
           <CardElement
             options={{
               style: {
@@ -111,10 +112,10 @@ const CheckoutForm = () => {
               },
             }}
           />
-          <div class="d-grid gap-2">
-            <button className="mt-4 btn btn-success" type="submit" disabled={!stripe}>
-              Pay
-            </button>
+          <div class="d-grid gap-2 mb-4">
+          <Link to="/thankyou"><button className="mt-4 btn btn-success" type="submit" disabled={!stripe}>
+              Pay 
+            </button> </Link>
           </div>
         </div>
       </div>

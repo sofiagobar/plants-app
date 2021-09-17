@@ -13,6 +13,8 @@ const session = require('./config/session.config');
 
 const app = express();
 
+app.use(express.static(`${__dirname}/react-app`));
+
 /** Middlewares */
 app.use(logger('dev'));
 app.use(session);
@@ -25,6 +27,9 @@ app.use(express.json());
 const routes = require('./config/routes.config');
 app.use('/api', routes);
 
+app.get('/*', (req, res) => {
+  res.sendFile(`${__dirname}/react-app/index.html`);
+})
 
 /** Error Handling */
 

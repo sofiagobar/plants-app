@@ -1,6 +1,6 @@
 import '../plant-detail/PlantDetail.css'
 import { useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react/cjs/react.development";
 import plantsService from "../../../services/plants-service";
 import { useContext } from "react";
@@ -10,8 +10,7 @@ function PlantDetails() {
 
     const [plant, setPlant] = useState(null);
     const {id} = useParams();
-    const history = useHistory();
-    const { cart, createProduct} = useContext(CartContext);
+    const { createProduct} = useContext(CartContext);
     
     useEffect(() => {
         let isMounted = true;
@@ -22,12 +21,6 @@ function PlantDetails() {
                 }
             })
         return () => isMounted = false;
-            /*.catch(error => {
-                console.error(error);
-                if (error.response?.status === 404) {
-                    history.push('/404');
-                }
-            })*/
     }, [id])
 
     const handleCreateProduct = () => {
