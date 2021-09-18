@@ -27,17 +27,24 @@ export function CartContextProvider({children}) {
     }*/
 
     function createProduct(product) {
-        const isSelected = cart.products.some(e =>  e.id === product.id)
-
-        if (!isSelected) {
-            const cartUpdated = {
+        const previousProduct = cart.products.find(e =>  e.id === product.id)
+        let cartUpdated;
+        if (!previousProduct) {
+            cartUpdated = {
                 products: [...cart.products, product],
                 finalPrice: cart.finalPrice + ( product.price * product.quantity)
             };
-            setCart(cartUpdated)
         } else {
-            
+            const updatedProduct = {
+                ...previousProduct, 
+                quantity: previousProduct.quantity + 1
+            }
+            cartUpdated = {
+                products: [...cart.products.filter(p => p.id !== product.id), updatedProduct ],
+                finalPrice: cart.finalPrice + ( product.price * product.quantity)
+            };
         }
+        setCart(cartUpdated)
     }
 
     function editProduct(id, keyQuantity) {
@@ -52,11 +59,9 @@ export function CartContextProvider({children}) {
                 const productUpdated = {...elem};
                 if (keyQuantity === 'add') {
                     productUpdated.quantity += 1;
-                    //productUpdated.price += elem.price;
                     cartUpdated.finalPrice += productUpdated.price
                 } else {
                     productUpdated.quantity -= 1;
-                    //productUpdated.price -= elem.price * elem.quantity;
                     cartUpdated.finalPrice -= productUpdated.price
                 }
                 return productUpdated

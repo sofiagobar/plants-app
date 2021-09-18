@@ -1,6 +1,9 @@
 import http from './base-api-service';
 
-const createOrder= () => http.post('/orders')
+const createOrder= (cart) => {
+    console.log('cart:',cart)
+    return http.post('/orders', cart)
+}
 
 const ordersService = {
     createOrder,

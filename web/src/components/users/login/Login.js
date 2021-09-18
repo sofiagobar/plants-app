@@ -45,14 +45,14 @@ function Login() {
             <h1 className="heading mb-5">Planty</h1>
             
             <form onSubmit={handleSubmit}>
-              <div className="form-group mx-sm-3">
+              <div className="form-group-label mx-sm-3">
                 <label>Email</label> 
                 <input name="email" type="text" value={data.email} placeholder="example@example.org" onChange={handleChange}
                 className={`form-control ${error ? 'is-invalid' : ''}`} />
                 {error && <div className="invalid-feedback">{error}</div>}
               </div>
 
-              <div className="form-group mx-sm-3">
+              <div className="form-group-label mx-sm-3">
                 <label>Password</label> 
                 <input name="password" type="password" value={data.password} className="form-control col-md-2" onChange={handleChange}
                 placeholder="Password" />
@@ -64,7 +64,7 @@ function Login() {
 
             <a className="btn btn-primary btn-lg rounded-pill mt-4" href={`${process.env.REACT_APP_API_BASE_URL}/authenticate/google`}><i className="fa fa-google"></i> Log in with Google</a>
             
-            <p className="mt-3">First time here? <Link to="/register">Register</Link></p>
+            <p className="mt-3 register">First time here? <Link to="/register">Register</Link></p>
           </div>
         </div>
       </div>

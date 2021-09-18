@@ -94,7 +94,7 @@ function Navbar({ id, name, picture, price }) {
                             </button>
                           </div>
                         </span>
-                        <span className="item-price">{product.price}€</span>
+                        <span className="item-price">{product.price}€ ({product.quantity * product.price})</span>
                         <button
                           className="btn btn-outline-danger"
                           onClick={() => deleteProduct(product.id)}

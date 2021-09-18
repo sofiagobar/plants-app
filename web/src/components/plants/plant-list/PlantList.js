@@ -23,12 +23,6 @@ function PlantList() {
       });
   }, [search, petFriendly]);
 
-  /*function handleChange() {
-    setPetFriendly(petFriendly)
-
-    onClick={handleChange}
-  }*/
-
   function handleSearch(text) {
     setSearch(text);
   }
@@ -44,7 +38,7 @@ function PlantList() {
         <SearchBar value={search} onSearch={handleSearch} />
       </div>
       <div className="btn-group-toggle my-4" data-toggle="buttons">
-        <button className="btn btn-secondary" onClick={() =>  setPetFriendly(!petFriendly)}>
+        <button className="btn btn-warning" onClick={() =>  setPetFriendly(!petFriendly)}>
           <i className="fa fa-paw fa-fg me-2"></i>
           <p className="pet-friendly">Pet friendly</p>
         </button>

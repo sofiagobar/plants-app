@@ -13,7 +13,6 @@ const CheckoutForm = () => {
   const { cart, clearCart } = useContext(CartContext);
   const { user } = useContext(AuthContext)
   const history = useHistory()
-  const [order, setOrder] = useState()
 
   const handleSubmit = async (event) => {
     // Block native form submission.
@@ -36,20 +35,19 @@ const CheckoutForm = () => {
       card: cardElement,
     });
 
-    ordersService.createOrder(order, cart)
-      .then(order => {
-        setOrder(order)
-        clearCart()
-        history.push('/')
-      })
-
-
-
     if (error) {
       console.log("[error]", error);
     } else {
       console.log("[paymentMethod]", paymentMethod);
     }
+
+    const order = await ordersService.createOrder(cart)
+    clearCart()
+    history.push('/thankyou')
+
+
+
+    
   };
 
   return (
@@ -113,9 +111,9 @@ const CheckoutForm = () => {
             }}
           />
           <div class="d-grid gap-2 mb-4">
-          <Link to="/thankyou"><button className="mt-4 btn btn-success" type="submit" disabled={!stripe}>
+          <button className="mt-4 btn btn-success" type="submit" disabled={!stripe}>
               Pay 
-            </button> </Link>
+            </button>
           </div>
         </div>
       </div>
