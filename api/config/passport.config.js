@@ -20,7 +20,7 @@ passport.use(
     {
     clientID: process.env.G_CLIENT_ID,
     clientSecret: process.env.G_CLIENT_SECRET,
-    callbackURL: process.env.G_REDIRECT_URI || '/api/authenticate/google/cb',
+    callbackURL: '/api/authenticate/google/cb',
     }, 
     (accessToken, refreshToken, profile, next) => {
     // No necesitamos guardar el token de acceso de google xq no necesitamos pedir a google ninguna información adicional
