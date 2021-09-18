@@ -4,3 +4,4 @@ build:
     web: Dockerfile
   config:
     REACT_APP_API_BASE_URL: https://app-planty.herokuapp.com/api
+    

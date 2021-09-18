@@ -29,6 +29,7 @@ function Navbar({ id, name, picture, price }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid mt-2">
+      {auth.user ? (
         <button
           className="navbar-toggler"
           type="button"
@@ -40,7 +41,10 @@ function Navbar({ id, name, picture, price }) {
           onClick={() => setShowUser(!showUser)}
         >
           <i className="fa fa-user fa-2x"></i>
-        </button>
+        </button> ) : (
+          <Link to="/login"><i className="fa fa-user fa-2x"></i> </Link>
+        )}
+
         <h1 className="navbar-brand">
           <Link to="/"> Planty </Link>
         </h1>
@@ -128,7 +132,7 @@ function Navbar({ id, name, picture, price }) {
           </div>
         </div>
 
-        {auth.user ? (
+        
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {auth.user?.name && (
@@ -147,15 +151,13 @@ function Navbar({ id, name, picture, price }) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" onClick={handleLogout} href="#">
+                <a className="nav-link active" onClick={handleLogout} href="#">
                   Logout
                 </a>
               </li>
             </ul>
           </div>
-        ) : (
-          <Link to="/login" />
-        )}
+        
       </div>
     </nav>
   );
