@@ -7,6 +7,7 @@ function ThankYou () {
             <div className="thanks container-fluid">
                 <h1 className="heading text-center">Thank you for your purchase!</h1>
                 <Link to="/"><p className="text-center lead">Keep buying</p></Link>
+                <Link to="/myorders"><p className="text-center lead">See My Orders</p></Link>
             </div>
         </div>
     )

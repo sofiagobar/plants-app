@@ -95,7 +95,6 @@ export function CartContextProvider({children}) {
     }
     
     const clearCart = () => {
-        //localStorage.removeItem('cart');
         setCart({
             products: [],
             finalPrice: 0

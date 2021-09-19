@@ -9,6 +9,7 @@ import PlantDetails from "./components/plants/plant-detail/PlantDetails";
 import GoogleCallback from "./components/users/googlecallback/GoogleCallback";
 import PayItem from "./components/orders/Payitem";
 import Thankyou from "./components/orders/thank-you/Thankyou";
+import MyOrders from "./components/orders/my-orders/MyOrders";
 
 function App() {
   const location = useLocation()
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/google/cb" component={GoogleCallback} />
         <Route exact path="/orders" component={PayItem} />
         <Route exact path='/thankyou' component={Thankyou}/>
+        <Route exact path='/myorders' component={MyOrders}/>
         <Redirect to="/"/>
       </Switch>
     </>

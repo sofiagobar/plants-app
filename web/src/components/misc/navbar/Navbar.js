@@ -94,13 +94,15 @@ function Navbar({ id, name, picture, price }) {
                             </button>
                           </div>
                         </span>
-                        <span className="item-price">{product.price}€ ({product.quantity * product.price})</span>
+                        <span className="item-price">{product.price}€</span>
+                        <span className="item-price">{(product.quantity * product.price).toFixed(2)}</span>
                         <button
                           className="btn btn-outline-danger"
                           onClick={() => deleteProduct(product.id)}
                         >
                           <i className="fa fa-times"></i>
                         </button>
+                        
                       </div>
                     </div>
                   ))}
@@ -146,8 +148,10 @@ function Navbar({ id, name, picture, price }) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="#">
+                <a className="nav-link active">
+                  <Link to="/myorders"> 
                   My orders
+                  </Link>
                 </a>
               </li>
               <li className="nav-item">

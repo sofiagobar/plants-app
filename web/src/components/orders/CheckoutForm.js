@@ -45,9 +45,6 @@ const CheckoutForm = () => {
     clearCart()
     history.push('/thankyou')
 
-
-
-    
   };
 
   return (

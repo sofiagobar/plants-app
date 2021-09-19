@@ -13,6 +13,7 @@ const orderSchema = new Schema(
       {
         id: String,
         name: String,
+        image: String,
         quantity: Number,
         price: Number
       }

@@ -9,7 +9,10 @@
     width: 100vw;
     top: 0;
 }
-
+.thanks p{
+    color: white;
+    text-decoration: none;
+}
 .heading {
     color: white;
     text-decoration: white;
@@ -17,6 +20,3 @@
     font-weight: 600;
 }
 
-.lead {
-    color: white;
-}
