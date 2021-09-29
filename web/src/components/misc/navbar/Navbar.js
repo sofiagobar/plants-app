@@ -11,13 +11,8 @@ function Navbar({ id, name, picture, price }) {
   const auth = useContext(AuthContext);
   const { cart, editProduct, deleteProduct } = useContext(CartContext);
 
-  //const [setQuantity] = useState(1);
   const [showCart, setShowCart] = useState(false);
   const [showUser, setShowUser] = useState(false);
-
-  /*const handleChange = (event) => {
-    setQuantity(event.target.value);
-  };*/
 
   function handleLogout() {
     service.logout().then(() => {
@@ -115,14 +110,22 @@ function Navbar({ id, name, picture, price }) {
                             {cart.finalPrice.toFixed(2)}
                           </span>
                         </div>
-                        <Link to="/orders">
+                        {auth.user ? (<Link to="/orders">
                           <button
                             className="btn btn-success"
                             onClick={() => setShowCart(!showCart)}
                           >
                             Checkout
                           </button>
-                        </Link>
+                        </Link>) : 
+                        (<Link to="/login">
+                          <button
+                            className="btn btn-success"
+                            onClick={() => setShowCart(!showCart)}
+                          >
+                            Checkout
+                          </button> 
+                          </Link>) }
                       </div>
                     </div>
                   ) : (
