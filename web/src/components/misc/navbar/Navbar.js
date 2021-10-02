@@ -22,23 +22,32 @@ function Navbar({ id, name, picture, price }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid mt-2">
-      {auth.user ? (
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onClick={() => setShowUser(!showUser)}
-        >
-          <i className="fa fa-user fa-2x"></i>
-        </button> ) : (
-          <Link to="/login"><i className="fa fa-user fa-2x"></i> </Link>
+    <nav className="navbar navbar-light bg-light">
+      <div className=" navbardiv container-fluid mt-2">
+        <div>
+        {auth.user ? (
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setShowUser(!showUser)}
+          >
+            <i className="fa fa-user fa-2x"></i>
+          </button>
+        ) : (
+          <Link 
+            to="/login"
+            className="navbar-toggler ms-3"
+            type="button"
+          >
+            <i className="fa fa-user fa-2x"></i>{" "}
+          </Link>
         )}
+        </div>
 
         <h1 className="navbar-brand">
           <Link to="/"> Planty </Link>
@@ -56,7 +65,7 @@ function Navbar({ id, name, picture, price }) {
             </span>
           </button>
 
-          <div className="container">
+          <div className="container" >
             <div className="shopping-cart">
               {showCart && (
                 <div className="shopping-cart-items">
@@ -90,14 +99,15 @@ function Navbar({ id, name, picture, price }) {
                           </div>
                         </span>
                         <span className="item-price">{product.price}€</span>
-                        <span className="item-price">{(product.quantity * product.price).toFixed(2)}</span>
+                        <span className="item-price">
+                          {(product.quantity * product.price).toFixed(2)}€
+                        </span>
                         <button
                           className="btn btn-outline-danger"
                           onClick={() => deleteProduct(product.id)}
                         >
                           <i className="fa fa-times"></i>
                         </button>
-                        
                       </div>
                     </div>
                   ))}
@@ -107,29 +117,35 @@ function Navbar({ id, name, picture, price }) {
                         <div className="mt-2">
                           <span className="lighter-text">Total: </span>
                           <span className="main-color-text">
-                            {cart.finalPrice.toFixed(2)}
+                            {cart.finalPrice.toFixed(2)}€
                           </span>
                         </div>
-                        {auth.user ? (<Link to="/orders">
-                          <button
-                            className="btn btn-success"
-                            onClick={() => setShowCart(!showCart)}
-                          >
-                            Checkout
-                          </button>
-                        </Link>) : 
-                        (<Link to="/login">
-                          <button
-                            className="btn btn-success"
-                            onClick={() => setShowCart(!showCart)}
-                          >
-                            Checkout
-                          </button> 
-                          </Link>) }
+                        {auth.user ? (
+                          <Link to="/orders">
+                            <button
+                              className="btn btn-success"
+                              onClick={() => setShowCart(!showCart)}
+                            >
+                              Checkout
+                            </button>
+                          </Link>
+                        ) : (
+                          <Link to="/login">
+                            <button
+                              className="btn btn-success"
+                              onClick={() => setShowCart(!showCart)}
+                            >
+                              Checkout
+                            </button>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   ) : (
-                    <p>Nothing in your cart yet!</p>
+                    <div className="nocart">
+                      <p>Nothing in your cart yet!</p>
+                    </div>
+                    
                   )}
                 </div>
               )}
@@ -137,14 +153,12 @@ function Navbar({ id, name, picture, price }) {
           </div>
         </div>
 
-        
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {auth.user?.name && (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {auth.user?.name && (
-                <li className="nav-item">
-                  <span className="nav-link me-3">Hi {auth.user?.name}!</span>
-                </li>
-              )}
+              <li className="nav-item">
+                <span className="nav-link me-3">Hi {auth.user?.name}!</span>
+              </li>
               <li className="nav-item">
                 <a className="nav-link active" href="#">
                   Profile
@@ -152,9 +166,7 @@ function Navbar({ id, name, picture, price }) {
               </li>
               <li className="nav-item">
                 <a className="nav-link active">
-                  <Link to="/myorders"> 
-                  My orders
-                  </Link>
+                  <Link to="/myorders">My orders</Link>
                 </a>
               </li>
               <li className="nav-item">
@@ -163,8 +175,8 @@ function Navbar({ id, name, picture, price }) {
                 </a>
               </li>
             </ul>
-          </div>
-        
+          )}
+        </div>
       </div>
     </nav>
   );

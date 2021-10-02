@@ -38,15 +38,19 @@ function PlantDetails() {
             <div className="plant-img" style={{backgroundImage: `url(${plant.picture})`}}></div>
             <Link to="/"> <i id="angle-icon" class="fa fa-angle-left fa-3x"></i> </Link>
             <div className="card-body text-centered">
-                <h1 className="card-title">{plant.name}</h1>
-                <p className="card-text">{plant.price}€</p>
-                <p className="card-text">{plant.description}</p>
-                <button className="btn btn-info" onClick={handleCreateProduct} >Add to Cart</button>
+                <h1 className="card-title mb-3">{plant.name}</h1>
+                <div className="price-cart mb-3">
+                    <h3 className="card-price">{plant.price}€</h3>
+                    <button className="btn btn-info" onClick={handleCreateProduct} >Add to Cart</button>
+                </div >
+                <ul className="list-group list-group-flush mb-3">
+                    <li className="list-group-item"> <i class="fa fa-sun"></i> {plant.light}</li>
+                    <li className="list-group-item"> <i class="fa fa-tint fa-2x me-3"></i> {plant.water}</li>
+                </ul>
+                <p className="card-text mb-2">{plant.description}</p>
+                
             </div>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item"> <i class="bi bi-sun"></i> {plant.light}</li>
-                <li className="list-group-item"> <i class="fa fa-tint fa-2x me-3"></i> {plant.water}</li>
-            </ul>
+            
         </div>
     )
 }

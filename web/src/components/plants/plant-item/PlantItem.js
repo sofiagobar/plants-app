@@ -17,7 +17,7 @@ function PlantItem({ id, name, picture, price}) {
   };
 
   return (
-    <div className="col-6 mb-3 ">
+    <div className="col-6 col-md-4 mb-3 ">
       <div className="card small-shadow">
         <Link to={`/plants/${id}`}> <img className="card-img-top img-fluid" src={picture} alt={name}/> </Link>
         <div className="card-body">

@@ -3,7 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
-  height: 75vh;
+  height: 60vh;
 }
 
 #angle-icon {
@@ -12,9 +12,17 @@
   left: 18px;
   color: black;
 }
+
 .fa-tint {
     color: #216974;
 }
+
 .card-title {
     color: #2b4521;
 }
+
+.price-cart{
+  display: flex;
+  justify-content: space-evenly;
+}
+

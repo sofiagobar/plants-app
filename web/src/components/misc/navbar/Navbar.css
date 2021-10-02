@@ -1,11 +1,24 @@
 .container {
   width: 100%;
-  
 }
+
+.navbar{
+  display: flex;
+}
+
+.navbardiv{
+  justify-content: space-around;
+}
+
 .nav-item a {
   color: black;
   text-decoration: none;
 }
+
+.navbar-brand{
+  margin-right: 0px;
+}
+
 .navbar-brand a {
     text-decoration: none;
     font-weight: 700;
@@ -32,7 +45,6 @@ li {
   position: absolute;
   border-radius: 3px;
   top: 86px;
-  
 }
 
 .shopping-cart-bottom {
@@ -58,6 +70,7 @@ img {
   display: block;
   padding-top: 10px;
   font-size: 16px;
+  color: #2b4521;
 }
 
 .counter{
@@ -80,6 +93,11 @@ img {
 
 .cart {
   height: 50px;
+}
+
+.nocart {
+  display: flex;
+  justify-content: center;
 }
 
 .fa-user {
