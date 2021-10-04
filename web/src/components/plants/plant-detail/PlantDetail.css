@@ -13,8 +13,16 @@
   color: black;
 }
 
+.btn-info {
+  background-color: #216974;
+}
+
 .fa-tint {
-    color: #216974;
+  color: #216974;
+}
+
+.fa-sun {
+  color: #f98f2a;
 }
 
 .card-title {

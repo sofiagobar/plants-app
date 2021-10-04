@@ -43,9 +43,9 @@ function PlantDetails() {
                     <h3 className="card-price">{plant.price}€</h3>
                     <button className="btn btn-info" onClick={handleCreateProduct} >Add to Cart</button>
                 </div >
-                <ul className="list-group list-group-flush mb-3">
-                    <li className="list-group-item"> <i class="fa fa-sun"></i> {plant.light}</li>
-                    <li className="list-group-item"> <i class="fa fa-tint fa-2x me-3"></i> {plant.water}</li>
+                <ul className="list-group list-group-flush mt-2 mb-3">
+                    <li className="list-group-item mb-2"> <i class="fa fa-sun fa-2x me-3"></i> {plant.light}</li>
+                    <li className="list-group-item mb-2"> <i class="fa fa-tint fa-2x me-3"></i> {plant.water}</li>
                 </ul>
                 <p className="card-text mb-2">{plant.description}</p>
                 
