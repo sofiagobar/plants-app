@@ -13,8 +13,10 @@
   color: black;
 }
 
-.btn-info {
-  background-color: #216974;
+.btn-cart {
+  background-color: #8e9b66;
+  border-radius: 5px;
+  border: 1px solid #8b9c59;
 }
 
 .fa-tint {
@@ -26,7 +28,7 @@
 }
 
 .card-title {
-    color: #2b4521;
+  color: #2b4521;
 }
 
 .price-cart{

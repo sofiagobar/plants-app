@@ -32,7 +32,7 @@ export function CartContextProvider({children}) {
         if (!previousProduct) {
             cartUpdated = {
                 products: [...cart.products, product],
-                finalPrice: cart.finalPrice + ( product.price * product.quantity)
+                finalPrice: cart.finalPrice + (product.price * product.quantity)
             };
         } else {
             const updatedProduct = {
@@ -40,8 +40,8 @@ export function CartContextProvider({children}) {
                 quantity: previousProduct.quantity + 1
             }
             cartUpdated = {
-                products: [...cart.products.filter(p => p.id !== product.id), updatedProduct ],
-                finalPrice: cart.finalPrice + ( product.price * product.quantity)
+                products: [...cart.products.filter(p => p.id !== product.id), updatedProduct],
+                finalPrice: cart.finalPrice + (product.price * product.quantity)
             };
         }
         setCart(cartUpdated)
@@ -61,9 +61,18 @@ export function CartContextProvider({children}) {
                     productUpdated.quantity += 1;
                     cartUpdated.finalPrice += productUpdated.price
                 } else {
+                    if (productUpdated.quantity >= 0) {
+                        productUpdated.quantity -= 1;
+                        cartUpdated.finalPrice -= productUpdated.price
+                    }
+                }
+
+               /* ///como estaba antes el else:
+               else {
                     productUpdated.quantity -= 1;
                     cartUpdated.finalPrice -= productUpdated.price
-                }
+                }*/
+
                 return productUpdated
             } else {
                 return elem
@@ -115,15 +124,3 @@ export function CartContextProvider({children}) {
         </CartContext.Provider>
     )
 }
-
-/*const newProducts = cart.products.filter((elem, i) => {
-            if (elem.id === id) {
-                cartUpdated.products.quantity + elem.quantity;
-                cartUpdated.finalPrice = cartUpdated.finalPrice - elem.price * elem.quantity
-                return false
-            } else {
-                return true
-            }
-        });
-
-        cartUpdated.products = newProducts*/

@@ -23,7 +23,7 @@
     text-decoration: none;
     font-weight: 700;
     font-size: 26px;
-    color: rgb(4, 168, 113);
+    color: #5a6e3a;
 }
 
 #plant-img {
@@ -71,6 +71,7 @@ img {
   padding-top: 10px;
   font-size: 16px;
   color: #2b4521;
+  font-weight: 500;
 }
 
 .counter{
@@ -83,7 +84,7 @@ img {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #d9d9d9;
+  background-color: #dbeac6;
   display: flex;
   justify-content: center;
   align-items: center;
